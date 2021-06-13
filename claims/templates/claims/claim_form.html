@@ -1,0 +1,44 @@
+{% extends 'claims/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+{% if user.claim.status != 'Accepted' %}
+
+    <h1 class="my-4">{% if request.path == '/new'  %} 
+        New Claim 
+        {% else %} 
+        Edit - 
+        
+        {% endif %}
+
+
+        {% if request.path != '/new' %}<small>{{ user.claim.name }}</small>{% endif %}
+    </h1>
+    <div class="row">
+        <div class="col-12"style="width:600px">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                
+                    <div class="form-group" style="width:600px">
+                        {{ field.label_tag }}<br/>
+                        {{ field }}<br/>
+                    </div>
+                
+                {% endfor %}
+                <input type="submit" {% if request.path == '/new' %} value="Add" {% else %} value="Update" {% endif %} class="btn btn-success"/>
+                <a href="{% url 'claim_list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+            </form>
+        </div>
+    </div>
+
+{% else %}
+
+<p>
+    <strong>YOU ARE NOT ALLOWED TO EDIT!!!!</strong>
+
+
+</p>
+{% endif %}
+
+{% endblock %}

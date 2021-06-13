@@ -1,0 +1,66 @@
+{% extends 'claims/base.html' %}
+
+{% block content %}
+    <h1 class="my-4">
+        <small>Insurance Claim</small>
+    </h1>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+
+        
+
+            {% if object_list  %}
+                {% if user == user.claim.user %}
+                    <div class="col-12" style="overflow-x: scroll">
+                        <table class="table table-bordered">
+                        <thead class="table-info">
+                            <tr >
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">View</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        
+                        
+                            <tr>
+                                <td>{{ user.claim.name }}</td>
+                                <td>{{ user.claim.email }}</td>
+                                <td>{{ user.claim.status }}</td>
+                                <td><a href="{% url 'claim_view' user.claim.id %}"><button type="button" class="btn btn-outline-primary btn-sm">View</button></a></td>
+
+                                {% if user.claim.status != 'Accepted' %}
+                                <td><a href="{% url 'claim_delete' user.claim.id %}"><button type="button" class="btn btn-outline-danger btn-sm">Delete</button></a></td>
+                                {% endif %}
+                            
+                            </tr>
+
+                {% else %}
+
+                    <div class="col-12">
+                        <div class="alert alert-warning" role="alert">
+                            There is no claim, yet. But if you want, you can add from <a class="badge badge-info" href="{% url 'claim_new' %}"><strong>here.</strong></a>
+                        </div>
+                    </div>
+
+                    {% endif %}
+                    
+                    
+                    </tbody>
+                    </table>
+                </div>
+            {% else %}
+            
+            {% endif %}
+          
+        
+    </div>
+{% endblock %}

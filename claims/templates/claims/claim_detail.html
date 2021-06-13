@@ -1,0 +1,39 @@
+{% extends 'claims/base.html' %}
+
+{% block content %}
+{% csrf_token %}
+    <h1 class="my-4">Detail -
+        <small>{{ user.claim.name }}</small>
+    </h1>
+    <div class="row">
+        <div class="col-12">
+            <ul class="list-group">
+              <li class="list-group-item"><strong>User:</strong> {{ user }}</li>
+              <li class="list-group-item"><strong>Name:</strong> {{ user.claim.name }}</li>
+              <li class="list-group-item"><strong>Mobile No:</strong> {{ user.claim.mobile_no }}</li>
+              <li class="list-group-item"><strong>Vehicle Year Make:</strong> {{ user.claim.vehicle_year_make }}</li>
+              <li class="list-group-item"><strong>Vehicle Model:</strong> {{ user.claim.vehicle_model }}</li>
+              <li class="list-group-item"><strong>Vehicle No:</strong> {{ user.claim.vehicle_no}}</li>
+              <li class="list-group-item"><strong>Date & Time:</strong> {{ user.claim.date_and_time }}</li>
+              <li class="list-group-item"><strong>Location:</strong> {{ user.claim.location }}</li>
+              <li class="list-group-item"><strong>Type of loss:</strong> {{ user.claim.type_of_loss }}</li>
+              <li class="list-group-item"><strong>Description of Loss:</strong> {{ user.claim.description_loss }}</li>
+              <li class="list-group-item"><strong>Police Report Lodged ?</strong> {{ user.claim.police_report_lodged }}</li>
+              <li class="list-group-item"><strong>Anybody Injured ?</strong> {{ user.claim.anybody_injured }}</li>
+              <li class="list-group-item"><strong>Photo:</strong> {{ user.claim.photo }}</li>
+              <li class="list-group-item"><strong>Covernote:</strong> {{ user.claim.cover_note }}</li>
+              <li class="list-group-item"><strong>Application Status:</strong> {{ user.claim.status }}</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row top-buffer">
+        <div class="col-12">
+            {% if user.claim.status != 'Accepted' %}
+                <a href="{% url 'claim_edit' user.claim.id %}"><button type="button" class="btn btn-success">Edit</button></a>
+            {% endif %}
+                <a href="{% url 'claim_list' %}"><button type="button" class="btn btn-secondary">Back</button></a>
+            
+        </div>
+    </div>
+{% endblock %}
