@@ -5,7 +5,9 @@ Once admin changes the claim status to "Accepted", users can no longer update th
 # clone this repo
 https://github.com/aimanash/tigerlab-test.git
 
-# run command "cd ...../tigerlab"
+# run command "cd ../tigerlab"
+
+# pip install -r requirements.txt
 
 # run command "python manage.py runserver"
 
