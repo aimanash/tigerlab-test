@@ -10,7 +10,7 @@ def make_accepted(modeladmin, request, queryset):
 
 @admin.action(description='Update status to In Progress')
 def make_in_progress(modeladmin, request, queryset):
-    queryset.update(status='In-Progress')
+    queryset.update(status='In Progress')
 
 
 class ClaimAdmin(admin.ModelAdmin):

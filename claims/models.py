@@ -6,7 +6,7 @@ from django.urls import reverse
 from multiselectfield import MultiSelectField
 
 STATUS_CHOICES = [
-    ('In-Progress', 'In Progress'),
+    ('In Progress', 'In Progress'),
     ('Accepted', 'Accepted'),
 ]
 
@@ -36,7 +36,7 @@ class Claim(models.Model):
     photo = models.ImageField('PHOTO', upload_to='uploads/jpg')
     cover_note = models.FileField('INSURANCE COVER NOTE', upload_to='uploads/pdf')
     status = models.CharField('STATUS', max_length=20, choices=STATUS_CHOICES,
-                              default='')
+                              default='In Progress')
 
     def __str__(self):
         return self.name
